@@ -1,13 +1,17 @@
 package person.tsungfuxie.springreadpropertiesexercise.properties;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource(value = "classpath:MyConfiguration.properties", ignoreResourceNotFound = true, encoding="UTF-8")
+@PropertySource(
+		value = "classpath:MyConfiguration.properties", 
+		ignoreResourceNotFound = true, 
+		encoding="UTF-8")
 public class DemoReadProperties {
 	
 	@Value("${config.type.user.name}")
@@ -19,6 +23,9 @@ public class DemoReadProperties {
 	@Value("${config.type.user.mail}")
     private String configTypeUserMail;
 	
+	@Value("${config.type.user.is.married}")
+    private Boolean configTypeUserIsMarried;
+	
 	@Value("${config.type.demo.default:this is a default value}")
     private String configTypeDemoDefault;
 	
@@ -26,19 +33,13 @@ public class DemoReadProperties {
 	private String[] configTypeStringArrayWithDefaults;
 	
 	@Value("${config.type.int.array:1,2,3}")
-	private String[] configTypeIntArrayWithDefaults;
+	private int[] configTypeIntArrayWithDefaults;
 	
 	@Value("#{systemProperties['os.name'] ?: 'my default system property value'}")
 	private String spelWithSystemPropertiesValue;
-
-	@Override
-	public String toString() {
-		return "DemoReadProperties [configTypeUserName=" + configTypeUserName + ", configTypeUserId=" + configTypeUserId
-				+ ", configTypeUserMail=" + configTypeUserMail + ", configTypeDemoDefault=" + configTypeDemoDefault
-				+ ", configTypeStringArrayWithDefaults=" + Arrays.toString(configTypeStringArrayWithDefaults)
-				+ ", configTypeIntArrayWithDefaults=" + Arrays.toString(configTypeIntArrayWithDefaults)
-				+ ", spelWithSystemPropertiesValue=" + spelWithSystemPropertiesValue + "]";
-	}
+	
+	@Value("#{${config.type.map}}")
+	private Map<String, Integer> configTypeMap;
 
 	public String getConfigTypeUserName() {
 		return configTypeUserName;
@@ -64,6 +65,16 @@ public class DemoReadProperties {
 		this.configTypeUserMail = configTypeUserMail;
 	}
 
+	
+
+	public Boolean getConfigTypeUserIsMarried() {
+		return configTypeUserIsMarried;
+	}
+
+	public void setConfigTypeUserIsMarried(Boolean configTypeUserIsMarried) {
+		this.configTypeUserIsMarried = configTypeUserIsMarried;
+	}
+
 	public String getConfigTypeDemoDefault() {
 		return configTypeDemoDefault;
 	}
@@ -80,11 +91,13 @@ public class DemoReadProperties {
 		this.configTypeStringArrayWithDefaults = configTypeStringArrayWithDefaults;
 	}
 
-	public String[] getConfigTypeIntArrayWithDefaults() {
+	
+
+	public int[] getConfigTypeIntArrayWithDefaults() {
 		return configTypeIntArrayWithDefaults;
 	}
 
-	public void setConfigTypeIntArrayWithDefaults(String[] configTypeIntArrayWithDefaults) {
+	public void setConfigTypeIntArrayWithDefaults(int[] configTypeIntArrayWithDefaults) {
 		this.configTypeIntArrayWithDefaults = configTypeIntArrayWithDefaults;
 	}
 
@@ -94,6 +107,14 @@ public class DemoReadProperties {
 
 	public void setSpelWithSystemPropertiesValue(String spelWithSystemPropertiesValue) {
 		this.spelWithSystemPropertiesValue = spelWithSystemPropertiesValue;
+	}
+
+	public Map<String, Integer> getConfigTypeMap() {
+		return configTypeMap;
+	}
+
+	public void setConfigTypeMap(Map<String, Integer> configTypeMap) {
+		this.configTypeMap = configTypeMap;
 	}
 
 	

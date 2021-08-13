@@ -1,6 +1,7 @@
 package person.tsungfuxie.springreadpropertiesexercise;
 
 import java.util.Arrays;
+import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,11 +36,14 @@ public class SpringReadPropertiesExerciseApplication implements ApplicationRunne
 		logger.info("user name = {}", demoReadProperties.getConfigTypeUserName());
 		logger.info("user id = {}", demoReadProperties.getConfigTypeUserId());
 		logger.info("user mail = {}", demoReadProperties.getConfigTypeUserMail());
+		logger.info("user is married = {}", demoReadProperties.getConfigTypeUserIsMarried() ? "結婚了" : "單身狗");
 		logger.info("ConfigTypeDemoDefault = {}", demoReadProperties.getConfigTypeDemoDefault());
-		logger.info("StringArrayWithDefaults(length = {}) = [{}]", demoReadProperties.getConfigTypeStringArrayWithDefaults().length, String.join(",", demoReadProperties.getConfigTypeStringArrayWithDefaults()));
-		logger.info("IntArrayWithDefaults(length = {}) = [{}]", demoReadProperties.getConfigTypeIntArrayWithDefaults().length, String.join(",", demoReadProperties.getConfigTypeIntArrayWithDefaults()));
+		logger.info("StringArrayWithDefaults(length = {}) = {}", demoReadProperties.getConfigTypeStringArrayWithDefaults().length, demoReadProperties.getConfigTypeStringArrayWithDefaults());
+		logger.info("IntArrayWithDefaults(length = {}) = {}", demoReadProperties.getConfigTypeIntArrayWithDefaults().length, demoReadProperties.getConfigTypeIntArrayWithDefaults());
 		logger.info("spelWithSystemPropertiesValue = {}", demoReadProperties.getSpelWithSystemPropertiesValue());
-		
+		for (Entry<String, Integer> mapEntry : demoReadProperties.getConfigTypeMap().entrySet()) {
+			logger.info("Map<{}, {}>", mapEntry.getKey(), mapEntry.getValue());
+		}
 	}
 	
 //	@Bean
