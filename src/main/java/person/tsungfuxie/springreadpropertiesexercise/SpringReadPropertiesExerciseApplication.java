@@ -31,7 +31,7 @@ public class SpringReadPropertiesExerciseApplication implements ApplicationRunne
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		// TODO Auto-generated method stub
-		logger.info("Hello world!");
+		logger.info("Hello world!!");
 		logger.info("====================Read Configuration===================");
 		logger.info("user name = {}", demoReadProperties.getConfigTypeUserName());
 		logger.info("user id = {}", demoReadProperties.getConfigTypeUserId());
